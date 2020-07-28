@@ -8,10 +8,14 @@ root.iconphoto(False,photo)
 
 root.title("Registration Form")
 
+state=StringVar()
+
 Label(root,text="Student Registration Form",font=("CalibriBlack",25)).place(x=360,y=0)
 
 Label(root,text="First Name:",font=("CalibriBlack",15)).place(x=20,y=70)
-Entry(root,font=("CalibriBlack",15)).place(x=130,y=72)
+e1 = Entry(root,font=("CalibriBlack",15))
+e1.focus()
+e1.place(x=130,y=72)
 
 Label(root,text="Middle Name:",font=("CalibriBlack",15)).place(x=370,y=70)
 Entry(root,font=("CalibriBlack",15)).place(x=500,y=72)
@@ -28,10 +32,28 @@ Entry(root,font=("CalibriBlack",15)).place(x=500,y=112)
 Label(root,text="ZIP/PIN:",font=("CalibriBlack",15)).place(x=740,y=110)
 Entry(root,font=("CalibriBlack",15)).place(x=850,y=112)
 
-Label(root,text="Address:",font=("CalibriBlack",15)).place(x=20,y=150)
-Label(root,text="Permanent Address:",font=("CalibriBlack",15)).place(x=20,y=190)
-Label(root,text="Name:",font=("CalibriBlack",15)).place(x=20,y=230)
-Label(root,text="Name:",font=("CalibriBlack",15)).place(x=20,y=270)
+Label(root,text="Current Address:",font=("CalibriBlack",15)).place(x=20,y=150)
+Entry(root,font=("CalibriBlack",15),width=75).place(x=230,y=150)
+
+Checkbutton(root,text="If your current address is same as permanent address then check it else not",font=("CalibriBlack",15)).place(x=20,y=190)
+
+Label(root,text="Permanent Address:",font=("CalibriBlack",15)).place(x=20,y=230)
+Entry(root,font=("CalibriBlack",15),width=75).place(x=230,y=230)
+
+Label(root,text="City:",font=("CalibriBlack",15)).place(x=20,y=270)
+Entry(root,font=("CalibriBlack",15),width=30).place(x=130,y=270)
+
+Label(root,text="State:",font=("CalibriBlack",15)).place(x=500,y=270)
+state_list=["Uttar Pradesh","Uttrakhand","Maharastra","Jammu & Kashmir"]
+state.set(state_list[0])
+o1=OptionMenu(root,state,*state_list)
+o1.config(font=("CalibriBlack",15),width=30)
+o1['menu'].configure(font=("CalibriBlack",15))
+o1.place(x=600,y=268)
+
+Label(root,text="Gender:",font=("CalibriBlack",15)).place(x=20,y=310)
+Label(root,text="Area of Intrest:",font=("CalibriBlack",15)).place(x=20,y=350)
+
 
 # image1= PhotoImage(file="./back.png")
 # label_for_image= Label(root, image=image1)
