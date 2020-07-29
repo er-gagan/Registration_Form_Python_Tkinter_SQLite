@@ -21,19 +21,48 @@ state = StringVar()
 gender = StringVar()
 age = StringVar()
 email = StringVar()
-# area_of_intrest1 = StringVar()
-# area_of_intrest2 = StringVar()
-# area_of_intrest3 = StringVar()
-# area_of_intrest4 = StringVar()
-# area_of_intrest5 = StringVar()
-# area_of_intrest6 = StringVar()
-# area_of_intrest7 = StringVar()
-# area_of_intrest8 = StringVar()
+area_of_intrest1 = StringVar()
+area_of_intrest2 = StringVar()
+area_of_intrest3 = StringVar()
+area_of_intrest4 = StringVar()
+area_of_intrest5 = StringVar()
+area_of_intrest6 = StringVar()
+area_of_intrest7 = StringVar()
+area_of_intrest8 = StringVar()
 
 gender.set(1)
 
 def Submit():
     print(fname.get(),mname.get(),lname.get(),phone1.get(),phone2.get(),pin.get(),current_address.get(),permanent_address.get(),city.get(),state.get(),gender.get(),age.get(),email.get(),textarea.get('1.0',END),sep=" ")
+    Area_Of_Intrest = ""
+    aoi1=area_of_intrest1.get()
+    aoi2=area_of_intrest2.get()
+    aoi3=area_of_intrest3.get()
+    aoi4=area_of_intrest4.get()
+    aoi5=area_of_intrest5.get()
+    aoi6=area_of_intrest6.get()
+    aoi7=area_of_intrest7.get()
+    aoi8=area_of_intrest8.get()
+    if aoi1!="":
+        Area_Of_Intrest += aoi1
+    if aoi2!="":
+        Area_Of_Intrest +=" " + aoi2
+    if aoi3!="":
+        Area_Of_Intrest +=" " + aoi3
+    if aoi4!="":
+        Area_Of_Intrest +=" " + aoi4
+    if aoi5!="":
+        Area_Of_Intrest +=" " + aoi5
+    if aoi6!="":
+        Area_Of_Intrest +=" " + aoi6
+    if aoi7!="":
+        Area_Of_Intrest +=" " + aoi7
+    if aoi8!="":
+        Area_Of_Intrest +=" " + aoi8
+    if Area_Of_Intrest[0] == " ":
+        Area_Of_Intrest = Area_Of_Intrest[1::]
+    print(Area_Of_Intrest)
+    
 
 Label(root,text="Student Registration Form",font=("CalibriBlack",25)).place(x=360,y=10)
 
@@ -82,22 +111,30 @@ Radiobutton(root,text="Female",variable=gender,value="Female",font=("CalibriBlac
 Radiobutton(root,text="Other",variable=gender,value="Others",font=("CalibriBlack",15)).place(x=350,y=310)
 
 Label(root,text="Area of Intrest:",font=("CalibriBlack",15)).place(x=20,y=350)
-# variable=area_of_intrest1,
-# variable=area_of_intrest2,
-# variable=area_of_intrest3,
-# variable=area_of_intrest4,
-# variable=area_of_intrest5,
-# variable=area_of_intrest6,
-# variable=area_of_intrest7,
-# variable=area_of_intrest8,
-Checkbutton(root,text="Programming",font=("CalibriBlack",15)).place(x=200,y=350)
-Checkbutton(root,text="Cricket",font=("CalibriBlack",15)).place(x=400,y=350)
-Checkbutton(root,text="Tennnis",font=("CalibriBlack",15)).place(x=600,y=350)
-Checkbutton(root,text="Carrom",font=("CalibriBlack",15)).place(x=800,y=350)
-Checkbutton(root,text="Studying",font=("CalibriBlack",15)).place(x=200,y=390)
-Checkbutton(root,text="Reading",font=("CalibriBlack",15)).place(x=400,y=390)
-Checkbutton(root,text="Dancing",font=("CalibriBlack",15)).place(x=600,y=390)
-Checkbutton(root,text="Travelling",font=("CalibriBlack",15)).place(x=800,y=390)
+c1 = Checkbutton(root,variable=area_of_intrest1,onvalue="Programming",offvalue="",text="Programming",font=("CalibriBlack",15))
+c1.deselect()
+c1.place(x=200,y=350)
+c2 = Checkbutton(root,variable=area_of_intrest2,onvalue="Cricket",offvalue="",text="Cricket",font=("CalibriBlack",15))
+c2.deselect()
+c2.place(x=400,y=350)
+c3 = Checkbutton(root,variable=area_of_intrest3,onvalue="Tennnis",offvalue="",text="Tennnis",font=("CalibriBlack",15))
+c3.deselect()
+c3.place(x=600,y=350)
+c4 = Checkbutton(root,variable=area_of_intrest4,onvalue="Carrom",offvalue="",text="Carrom",font=("CalibriBlack",15))
+c4.deselect()
+c4.place(x=800,y=350)
+c5 = Checkbutton(root,variable=area_of_intrest5,onvalue="Studying",offvalue="",text="Studying",font=("CalibriBlack",15))
+c5.deselect()
+c5.place(x=200,y=390)
+c6 = Checkbutton(root,variable=area_of_intrest6,onvalue="Reading",offvalue="",text="Reading",font=("CalibriBlack",15))
+c6.deselect()
+c6.place(x=400,y=390)
+c7 = Checkbutton(root,variable=area_of_intrest7,onvalue="Dancing",offvalue="",text="Dancing",font=("CalibriBlack",15))
+c7.deselect()
+c7.place(x=600,y=390)
+c8 = Checkbutton(root,variable=area_of_intrest8,onvalue="Travelling",offvalue="",text="Travelling",font=("CalibriBlack",15))
+c8.deselect()
+c8.place(x=800,y=390)
 
 Label(root,text="Age:",font=("CalibriBlack",15)).place(x=20,y=435)
 Entry(root,textvariable=age,font=("CalibriBlack",15)).place(x=100,y=435)
