@@ -62,7 +62,7 @@ def Submit():
         Area_Of_Intrest +=" " + aoi7
     if aoi8!="":
         Area_Of_Intrest +=" " + aoi8
-    if Area_Of_Intrest[0] == " ":
+    if Area_Of_Intrest[0:1:] == " ":
         Area_Of_Intrest = Area_Of_Intrest[1::]
         
     Fname = fname.get()
@@ -79,8 +79,47 @@ def Submit():
     Age = age.get()
     Email = email.get()
     Suggession = textarea.get('1.0',END)
-    SendDB(Fname,Mname,Lname,Phone1,Phone2,Pin,Current_address,Permanent_address,City,State,Gender,Area_Of_Intrest,Age,Email,Suggession)
-    showinfo("Record Stored","Student Record Has Successfully Stored")
+    
+    if Fname[0:1:] == " " or Fname[0::] == "":
+        showerror("Entry is Empty","Please Fill First Name Entry Box")
+    elif Mname[0:1:] == " " or Mname[0::] == "":
+        showerror("Entry is Empty","Please Fill Middle Name Entry Box")
+        e7.focus()
+    elif Lname[0:1:] == " " or Lname[0::] == "":
+        showerror("Entry is Empty","Please Fill Last Name Entry Box")  
+        e8.focus()
+    elif Phone1[0:1:] == " " or Phone1[0::] == "":
+        showerror("Entry is Empty","Please Fill Phone1 Entry Box")
+        e4.focus()
+    elif Phone2[0:1:] == " " or Phone2[0::] == "":
+        showerror("Entry is Empty","Please Fill Phone2 Entry Box")
+        e5.focus()
+    elif Pin[0:1:] == " " or Pin[0::] == "":
+        showerror("Entry is Empty","Please Fill Zip/Pin Entry Box")
+        e6.focus()
+    elif Current_address[0:1:] == " " or Current_address[0::] == "":
+        showerror("Entry is Empty","Please Fill Current Address Entry Box")
+        e2.focus()
+    elif Permanent_address[0:1:] == " " or Permanent_address[0::] == "":
+        showerror("Entry is Empty","Please Fill Permanent Address Entry Box")
+        e3.focus()
+    elif City[0:1:] == " " or City[0::] == "":
+        showerror("Entry is Empty","Please Fill City Name Entry Box")
+        e9.focus()
+    elif Area_Of_Intrest[0:1:] == " " or Area_Of_Intrest[0::] == "":
+        showerror("Entry is Empty","Please Fill Area of Intrest Entry Box")
+    elif Age[0:1:] == " " or Age[0::] == "":
+        showerror("Entry is Empty","Please Fill Age Entry Box")
+        e10.focus()
+    elif Email[0:1:] == " " or Email[0::] == "":
+        showerror("Entry is Empty","Please Fill Email Entry Box")
+        e11.focus()
+    elif Suggession[0:1:] == " " or Suggession[0::] == "":
+        showerror("Entry is Empty","Please Fill Suggession Text Box")
+        textarea.focus()
+    else:
+        SendDB(Fname,Mname,Lname,Phone1,Phone2,Pin,Current_address,Permanent_address,City,State,Gender,Area_Of_Intrest,Age,Email,Suggession)
+        showinfo("Record Stored","Student Record Has Successfully Stored")
     
 def ChkAdrs():
     check_value = check_address.get()
@@ -92,6 +131,9 @@ def ChkAdrs():
         permanent_address.set("")
         e2.config(state="normal")
         e3.config(state="normal")
+        
+def Clear():
+    pass
     
 
 Label(root,text="Student Registration Form",font=("CalibriBlack",25)).place(x=360,y=10)
@@ -102,19 +144,24 @@ e1.focus()
 e1.place(x=130,y=72)
 
 Label(root,text="Middle Name:",font=("CalibriBlack",15)).place(x=370,y=70)
-Entry(root,textvariable=mname,font=("CalibriBlack",15)).place(x=500,y=72)
+e7 = Entry(root,textvariable=mname,font=("CalibriBlack",15))
+e7.place(x=500,y=72)
 
 Label(root,text="Last Name:",font=("CalibriBlack",15)).place(x=740,y=70)
-Entry(root,textvariable=lname,font=("CalibriBlack",15)).place(x=850,y=72)
+e8 = Entry(root,textvariable=lname,font=("CalibriBlack",15))
+e8.place(x=850,y=72)
 
 Label(root,text="Phone1:",font=("CalibriBlack",15)).place(x=20,y=110)
-Entry(root,textvariable=phone1,font=("CalibriBlack",15)).place(x=130,y=112)
+e4 = Entry(root,textvariable=phone1,font=("CalibriBlack",15))
+e4.place(x=130,y=112)
 
 Label(root,text="Phone2:",font=("CalibriBlack",15)).place(x=370,y=110)
-Entry(root,textvariable=phone2,font=("CalibriBlack",15)).place(x=500,y=112)
+e5 = Entry(root,textvariable=phone2,font=("CalibriBlack",15))
+e5.place(x=500,y=112)
 
 Label(root,text="ZIP/PIN:",font=("CalibriBlack",15)).place(x=740,y=110)
-Entry(root,textvariable=pin,font=("CalibriBlack",15)).place(x=850,y=112)
+e6 = Entry(root,textvariable=pin,font=("CalibriBlack",15))
+e6.place(x=850,y=112)
 
 Label(root,text="Current Address:",font=("CalibriBlack",15)).place(x=20,y=150)
 e2 = Entry(root,textvariable=current_address,font=("CalibriBlack",15),width=75)
@@ -129,7 +176,8 @@ e3 = Entry(root,textvariable=permanent_address,font=("CalibriBlack",15),width=75
 e3.place(x=230,y=230)
 
 Label(root,text="City:",font=("CalibriBlack",15)).place(x=20,y=270)
-Entry(root,textvariable=city,font=("CalibriBlack",15),width=30).place(x=130,y=270)
+e9 = Entry(root,textvariable=city,font=("CalibriBlack",15),width=30)
+e9.place(x=130,y=270)
 
 Label(root,text="State:",font=("CalibriBlack",15)).place(x=500,y=270)
 state_list=["Uttar Pradesh","Uttrakhand","Maharastra","Jammu & Kashmir"]
@@ -140,7 +188,9 @@ o1['menu'].configure(font=("CalibriBlack",15))
 o1.place(x=600,y=268)
 
 Label(root,text="Gender:",font=("CalibriBlack",15)).place(x=20,y=310)
-Radiobutton(root,text="Male",variable=gender,value="Male",font=("CalibriBlack",15)).place(x=150,y=310)
+r1 = Radiobutton(root,text="Male",variable=gender,value="Male",font=("CalibriBlack",15))
+r1.select()
+r1.place(x=150,y=310)
 Radiobutton(root,text="Female",variable=gender,value="Female",font=("CalibriBlack",15)).place(x=250,y=310)
 Radiobutton(root,text="Other",variable=gender,value="Others",font=("CalibriBlack",15)).place(x=350,y=310)
 
@@ -171,15 +221,17 @@ c8.deselect()
 c8.place(x=800,y=390)
 
 Label(root,text="Age:",font=("CalibriBlack",15)).place(x=20,y=435)
-Entry(root,textvariable=age,font=("CalibriBlack",15)).place(x=100,y=435)
+e10 = Entry(root,textvariable=age,font=("CalibriBlack",15))
+e10.place(x=100,y=435)
 
 Label(root,text="Email:",font=("CalibriBlack",15)).place(x=400,y=435)
-Entry(root,textvariable=email,font=("CalibriBlack",15),width=45).place(x=500,y=435)
+e11 = Entry(root,textvariable=email,font=("CalibriBlack",15),width=45)
+e11.place(x=500,y=435)
 
 Label(root,text="Any Suggession:",font=("CalibriBlack",13)).place(x=20,y=475)
 textarea = Text(root,font=("CalibriBlack",15),bd=5,height=5)
 textarea.place(x=20,y=500)
 
 Button(root,text="Submit",font=("CalibriBlack",20),bd=8,command=Submit).place(x=940,y=500)
-Button(root,text="Clear",font=("CalibriBlack",16),bd=5,width=9).place(x=940,y=575)
+Button(root,text="Clear",font=("CalibriBlack",16),bd=5,width=9,command=Clear).place(x=940,y=575)
 root.mainloop()

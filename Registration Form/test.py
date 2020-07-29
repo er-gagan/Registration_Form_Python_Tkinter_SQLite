@@ -1,13 +1,17 @@
-import sqlite3
+from tkinter import *
 
-connection = sqlite3.connect('h.sql')
-c = connection.cursor()
-Fname="Gagan kkr"
-Lname="Aggarwal nhj"
-c.execute('CREATE TABLE IF NOT EXISTS Student (First_Name TEXT, Last_Name TEXT)')
+root = Tk()
 
-c.execute("INSERT INTO Student (First_Name,Last_Name) VALUES (?,?)",(Fname,Lname))
-connection.commit()
+data = StringVar()
 
-c.close()
-connection.close()
+def Submit():
+    Data = data.get()
+    if Data[0:1:] == " " or Data[0::] == "":
+        print("Empty")
+    else:
+        print("Not Empty")
+Entry(root,textvariable=data).place(x=10,y=10)
+
+Button(root,text="Submit",command=Submit).place(x=20,y=50)
+
+root.mainloop()
