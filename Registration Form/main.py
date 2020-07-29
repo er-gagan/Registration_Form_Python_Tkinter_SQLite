@@ -15,6 +15,7 @@ phone1 = StringVar()
 phone2 = StringVar()
 pin = StringVar()
 current_address = StringVar()
+check_address = StringVar()
 permanent_address = StringVar()
 city = StringVar()
 state = StringVar()
@@ -63,6 +64,17 @@ def Submit():
         Area_Of_Intrest = Area_Of_Intrest[1::]
     print(Area_Of_Intrest)
     
+def ChkAdrs():
+    check_value = check_address.get()
+    if check_value == "Yes":
+        permanent_address.set(current_address.get())
+        e2.config(state="readonly")
+        e3.config(state="readonly")
+    else:
+        permanent_address.set("")
+        e2.config(state="normal")
+        e3.config(state="normal")
+    
 
 Label(root,text="Student Registration Form",font=("CalibriBlack",25)).place(x=360,y=10)
 
@@ -87,12 +99,16 @@ Label(root,text="ZIP/PIN:",font=("CalibriBlack",15)).place(x=740,y=110)
 Entry(root,textvariable=pin,font=("CalibriBlack",15)).place(x=850,y=112)
 
 Label(root,text="Current Address:",font=("CalibriBlack",15)).place(x=20,y=150)
-Entry(root,textvariable=current_address,font=("CalibriBlack",15),width=75).place(x=230,y=150)
+e2 = Entry(root,textvariable=current_address,font=("CalibriBlack",15),width=75)
+e2.place(x=230,y=150)
 
-Checkbutton(root,text="If your current address is same as permanent address then check it else not",font=("CalibriBlack",14)).place(x=20,y=185)
+chk = Checkbutton(root,text="If your current address is same as permanent address then check it else not",variable=check_address,onvalue="Yes",offvalue="No",command=ChkAdrs,font=("CalibriBlack",14))
+chk.deselect()
+chk.place(x=20,y=185)
 
 Label(root,text="Permanent Address:",font=("CalibriBlack",15)).place(x=20,y=230)
-Entry(root,textvariable=permanent_address,font=("CalibriBlack",15),width=75).place(x=230,y=230)
+e3 = Entry(root,textvariable=permanent_address,font=("CalibriBlack",15),width=75)
+e3.place(x=230,y=230)
 
 Label(root,text="City:",font=("CalibriBlack",15)).place(x=20,y=270)
 Entry(root,textvariable=city,font=("CalibriBlack",15),width=30).place(x=130,y=270)
