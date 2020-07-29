@@ -1,4 +1,7 @@
 from tkinter import *
+from SQLiteDB import *
+from tkinter.messagebox import *
+
 root = Tk()
 root.geometry("1100x650")
 root.resizable(0,0)
@@ -20,8 +23,6 @@ permanent_address = StringVar()
 city = StringVar()
 state = StringVar()
 gender = StringVar()
-age = StringVar()
-email = StringVar()
 area_of_intrest1 = StringVar()
 area_of_intrest2 = StringVar()
 area_of_intrest3 = StringVar()
@@ -30,11 +31,12 @@ area_of_intrest5 = StringVar()
 area_of_intrest6 = StringVar()
 area_of_intrest7 = StringVar()
 area_of_intrest8 = StringVar()
+age = StringVar()
+email = StringVar()
 
 gender.set(1)
 
 def Submit():
-    print(fname.get(),mname.get(),lname.get(),phone1.get(),phone2.get(),pin.get(),current_address.get(),permanent_address.get(),city.get(),state.get(),gender.get(),age.get(),email.get(),textarea.get('1.0',END),sep=" ")
     Area_Of_Intrest = ""
     aoi1=area_of_intrest1.get()
     aoi2=area_of_intrest2.get()
@@ -62,7 +64,23 @@ def Submit():
         Area_Of_Intrest +=" " + aoi8
     if Area_Of_Intrest[0] == " ":
         Area_Of_Intrest = Area_Of_Intrest[1::]
-    print(Area_Of_Intrest)
+        
+    Fname = fname.get()
+    Mname = mname.get()
+    Lname = lname.get()
+    Phone1 = phone1.get()
+    Phone2 = phone2.get()
+    Pin = pin.get()
+    Current_address = current_address.get()
+    Permanent_address = permanent_address.get()
+    City = city.get()
+    State = state.get()
+    Gender = gender.get()
+    Age = age.get()
+    Email = email.get()
+    Suggession = textarea.get('1.0',END)
+    SendDB(Fname,Mname,Lname,Phone1,Phone2,Pin,Current_address,Permanent_address,City,State,Gender,Area_Of_Intrest,Age,Email,Suggession)
+    showinfo("Record Stored","Student Record Has Successfully Stored")
     
 def ChkAdrs():
     check_value = check_address.get()

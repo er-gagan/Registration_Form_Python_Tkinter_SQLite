@@ -1,20 +1,13 @@
-from tkinter import *
-root=Tk()
-root.geometry('500x500')
+import sqlite3
 
-val=StringVar()
+connection = sqlite3.connect('h.sql')
+c = connection.cursor()
+Fname="Gagan kkr"
+Lname="Aggarwal nhj"
+c.execute('CREATE TABLE IF NOT EXISTS Student (First_Name TEXT, Last_Name TEXT)')
 
-def sub():
-    print(val.get())
+c.execute("INSERT INTO Student (First_Name,Last_Name) VALUES (?,?)",(Fname,Lname))
+connection.commit()
 
-c1 = Checkbutton(root,text="One",variable=val,onvalue="One")
-c1.deselect()
-c1.place(x=20,y=20)
-
-Checkbutton(root,text="Two").place(x=20,y=50)
-Checkbutton(root,text="Three").place(x=20,y=80)
-Checkbutton(root,text="Four").place(x=20,y=110)
-
-Button(root,text="Submit",command=sub).place(x=20,y=150)
-
-root.mainloop()
+c.close()
+connection.close()
