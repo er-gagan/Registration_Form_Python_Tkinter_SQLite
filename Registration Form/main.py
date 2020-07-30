@@ -3,7 +3,7 @@ from SQLiteDB import *
 from tkinter.messagebox import *
 
 root = Tk()
-root.geometry("1100x650")
+root.geometry("1100x700")
 root.resizable(0,0)
 
 photo = PhotoImage(file = "./logo.png")
@@ -161,36 +161,54 @@ def Clear():
     e3.config(state="normal")
     state.set("Please Select State")
     textarea.delete('0.0',END)
+    
+def Show_Record():
+    Toproot = Toplevel()
+    Toproot.geometry('1008x415')
+    Toproot.resizable(0,0)
+    photo = PhotoImage(file = "./logo.png")
+    Toproot.iconphoto(False,photo)
+    try:
+        tt1 = Text(Toproot,font=("ArialBlack",15),width=89,height=17,bd=10,padx=4)
+        tt1.place(x=0,y=0)
+        record_data = Show_Data()
+        data_length = len(record_data)
+        for i in range(0,data_length):
+            tt1.insert(END,record_data[i])
+        tt1.config(state='disabled')
+    except sqlite3.OperationalError:
+        Toproot.destroy()
+        showerror("Database Error","Database not exist")
 
 Label(root,text="Student Registration Form",font=("CalibriBlack",25)).place(x=360,y=10)
 
 Label(root,text="First Name:",font=("CalibriBlack",15)).place(x=20,y=70)
-e1 = Entry(root,textvariable=fname,font=("CalibriBlack",15))
+e1 = Entry(root,textvariable=fname,font=("CalibriBlack",15),bd=2)
 e1.focus()
 e1.place(x=130,y=72)
 
 Label(root,text="Middle Name:",font=("CalibriBlack",15)).place(x=370,y=70)
-e7 = Entry(root,textvariable=mname,font=("CalibriBlack",15))
+e7 = Entry(root,bd=2,textvariable=mname,font=("CalibriBlack",15))
 e7.place(x=500,y=72)
 
 Label(root,text="Last Name:",font=("CalibriBlack",15)).place(x=740,y=70)
-e8 = Entry(root,textvariable=lname,font=("CalibriBlack",15))
+e8 = Entry(root,bd=2,textvariable=lname,font=("CalibriBlack",15))
 e8.place(x=850,y=72)
 
 Label(root,text="Phone1:",font=("CalibriBlack",15)).place(x=20,y=110)
-e4 = Entry(root,textvariable=phone1,font=("CalibriBlack",15))
+e4 = Entry(root,bd=2,textvariable=phone1,font=("CalibriBlack",15))
 e4.place(x=130,y=112)
 
 Label(root,text="Phone2:",font=("CalibriBlack",15)).place(x=370,y=110)
-e5 = Entry(root,textvariable=phone2,font=("CalibriBlack",15))
+e5 = Entry(root,bd=2,textvariable=phone2,font=("CalibriBlack",15))
 e5.place(x=500,y=112)
 
 Label(root,text="ZIP/PIN:",font=("CalibriBlack",15)).place(x=740,y=110)
-e6 = Entry(root,textvariable=pin,font=("CalibriBlack",15))
+e6 = Entry(root,bd=2,textvariable=pin,font=("CalibriBlack",15))
 e6.place(x=850,y=112)
 
 Label(root,text="Current Address:",font=("CalibriBlack",15)).place(x=20,y=150)
-e2 = Entry(root,textvariable=current_address,font=("CalibriBlack",15),width=75)
+e2 = Entry(root,bd=2,textvariable=current_address,font=("CalibriBlack",15),width=75)
 e2.place(x=230,y=150)
 
 chk = Checkbutton(root,text="If your current address is same as permanent address then check it else not",variable=check_address,onvalue="Yes",offvalue="No",command=ChkAdrs,font=("CalibriBlack",14))
@@ -198,11 +216,11 @@ chk.deselect()
 chk.place(x=20,y=185)
 
 Label(root,text="Permanent Address:",font=("CalibriBlack",15)).place(x=20,y=230)
-e3 = Entry(root,textvariable=permanent_address,font=("CalibriBlack",15),width=75)
+e3 = Entry(root,bd=2,textvariable=permanent_address,font=("CalibriBlack",15),width=75)
 e3.place(x=230,y=230)
 
 Label(root,text="City:",font=("CalibriBlack",15)).place(x=20,y=270)
-e9 = Entry(root,textvariable=city,font=("CalibriBlack",15),width=30)
+e9 = Entry(root,bd=2,textvariable=city,font=("CalibriBlack",15),width=30)
 e9.place(x=130,y=270)
 
 Label(root,text="State:",font=("CalibriBlack",15)).place(x=500,y=270)
@@ -247,17 +265,21 @@ c8.deselect()
 c8.place(x=800,y=390)
 
 Label(root,text="Age:",font=("CalibriBlack",15)).place(x=20,y=435)
-e10 = Entry(root,textvariable=age,font=("CalibriBlack",15))
+e10 = Entry(root,bd=2,textvariable=age,font=("CalibriBlack",15))
 e10.place(x=100,y=435)
 
 Label(root,text="Email:",font=("CalibriBlack",15)).place(x=400,y=435)
-e11 = Entry(root,textvariable=email,font=("CalibriBlack",15),width=45)
+e11 = Entry(root,bd=2,textvariable=email,font=("CalibriBlack",15),width=45)
 e11.place(x=500,y=435)
 
 Label(root,text="Any Suggession:",font=("CalibriBlack",13)).place(x=20,y=475)
 textarea = Text(root,font=("CalibriBlack",15),bd=5,height=5)
 textarea.place(x=20,y=500)
 
-Button(root,text="Submit",font=("CalibriBlack",20),bd=8,command=Submit).place(x=940,y=500)
-Button(root,text="Clear",font=("CalibriBlack",16),bd=5,width=9,command=Clear).place(x=940,y=575)
+Button(root,text="Submit",font=("CalibriBlack",20),bd=8,command=Submit,height=2).place(x=940,y=515)
+Button(root,text="Show Record",font=("CalibriBlack",12),bd=5,command=Show_Record).place(x=200,y=640)
+Button(root,text="Update Record",font=("CalibriBlack",12),bd=5).place(x=400,y=640)
+Button(root,text="Delete Record",font=("CalibriBlack",12),bd=5).place(x=600,y=640)
+
+Button(root,text="Clear",font=("CalibriBlack",13),bd=8,width=11,command=Clear).place(x=940,y=635)
 root.mainloop()
