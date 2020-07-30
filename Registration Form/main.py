@@ -78,8 +78,8 @@ def Submit():
     Gender = gender.get()
     Age = age.get()
     Email = email.get()
-    Suggession = textarea.get('1.0',END)
-    
+    Suggession = textarea.get('0.0',END)
+    Suggession_length = len(Suggession)
     if Fname[0:1:] == " " or Fname[0::] == "":
         showerror("Entry is Empty","Please Fill First Name Entry Box")
     elif Mname[0:1:] == " " or Mname[0::] == "":
@@ -107,16 +107,18 @@ def Submit():
         showerror("Entry is Empty","Please Fill City Name Entry Box")
         e9.focus()
     elif Area_Of_Intrest[0:1:] == " " or Area_Of_Intrest[0::] == "":
-        showerror("Entry is Empty","Please Fill Area of Intrest Entry Box")
+        showerror("Checkbox is Empty","Please Fill At Least One Checkbox")
     elif Age[0:1:] == " " or Age[0::] == "":
         showerror("Entry is Empty","Please Fill Age Entry Box")
         e10.focus()
     elif Email[0:1:] == " " or Email[0::] == "":
         showerror("Entry is Empty","Please Fill Email Entry Box")
         e11.focus()
-    elif Suggession[0:1:] == " " or Suggession[0::] == "":
-        showerror("Entry is Empty","Please Fill Suggession Text Box")
+    elif Suggession_length < 5 or Suggession[0:1:] == " " or Suggession[-2:-1:] == " ":
+        showerror("Suggession Box is Empty","Please Fill Atleast 6 Chatacter In Suggession Box")
         textarea.focus()
+    elif State == "Please Select State":
+        showerror("State Error","Please Select State")
     else:
         SendDB(Fname,Mname,Lname,Phone1,Phone2,Pin,Current_address,Permanent_address,City,State,Gender,Area_Of_Intrest,Age,Email,Suggession)
         showinfo("Record Stored","Student Record Has Successfully Stored")
@@ -133,8 +135,32 @@ def ChkAdrs():
         e3.config(state="normal")
         
 def Clear():
-    pass
-    
+    fname.set("")
+    mname.set("")
+    lname.set("")
+    phone1.set("")
+    phone2.set("")
+    pin.set("")
+    current_address.set("")
+    permanent_address.set("")
+    city.set("")
+    age.set("")
+    email.set("")
+    r1.select()
+    chk.deselect()
+    c1.deselect()
+    c2.deselect()
+    c3.deselect()
+    c4.deselect()
+    c5.deselect()
+    c6.deselect()
+    c7.deselect()
+    c8.deselect()
+    e1.focus()
+    e2.config(state="normal")
+    e3.config(state="normal")
+    state.set("Please Select State")
+    textarea.delete('0.0',END)
 
 Label(root,text="Student Registration Form",font=("CalibriBlack",25)).place(x=360,y=10)
 
@@ -181,7 +207,7 @@ e9.place(x=130,y=270)
 
 Label(root,text="State:",font=("CalibriBlack",15)).place(x=500,y=270)
 state_list=["Uttar Pradesh","Uttrakhand","Maharastra","Jammu & Kashmir"]
-state.set(state_list[0])
+state.set("Please Select State")
 o1=OptionMenu(root,state,*state_list)
 o1.config(font=("CalibriBlack",15),width=30)
 o1['menu'].configure(font=("CalibriBlack",15))
