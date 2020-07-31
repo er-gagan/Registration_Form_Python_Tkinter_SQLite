@@ -17,3 +17,6 @@ def Show_Data():
     views = c.fetchall()
     return views
 
+def DbClose():
+    c.close()
+    connection.close()

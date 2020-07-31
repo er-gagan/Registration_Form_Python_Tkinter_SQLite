@@ -280,6 +280,13 @@ Button(root,text="Submit",font=("CalibriBlack",20),bd=8,command=Submit,height=2)
 Button(root,text="Show Record",font=("CalibriBlack",12),bd=5,command=Show_Record).place(x=200,y=640)
 Button(root,text="Update Record",font=("CalibriBlack",12),bd=5).place(x=400,y=640)
 Button(root,text="Delete Record",font=("CalibriBlack",12),bd=5).place(x=600,y=640)
-
 Button(root,text="Clear",font=("CalibriBlack",13),bd=8,width=11,command=Clear).place(x=940,y=635)
+
+def on_closing():
+    if askokcancel("Quit", "Do you want to quit?"):
+        DbClose()
+        root.destroy()
+        
+root.protocol("WM_DELETE_WINDOW", on_closing)
+
 root.mainloop()
