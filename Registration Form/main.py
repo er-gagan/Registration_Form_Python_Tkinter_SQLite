@@ -3,7 +3,7 @@ from SQLiteDB import *
 from tkinter.messagebox import *
 
 root = Tk()
-root.geometry("1100x700")
+root.geometry("1100x650")
 root.resizable(0,0)
 
 photo = PhotoImage(file = "./logo.png")
@@ -276,11 +276,9 @@ Label(root,text="Any Suggession:",font=("CalibriBlack",13)).place(x=20,y=475)
 textarea = Text(root,font=("CalibriBlack",15),bd=5,height=5)
 textarea.place(x=20,y=500)
 
-Button(root,text="Submit",font=("CalibriBlack",20),bd=8,command=Submit,height=2).place(x=940,y=515)
-Button(root,text="Show Record",font=("CalibriBlack",12),bd=5,command=Show_Record).place(x=200,y=640)
-Button(root,text="Update Record",font=("CalibriBlack",12),bd=5).place(x=400,y=640)
-Button(root,text="Delete Record",font=("CalibriBlack",12),bd=5).place(x=600,y=640)
-Button(root,text="Clear",font=("CalibriBlack",13),bd=8,width=11,command=Clear).place(x=940,y=635)
+Button(root,text="Submit",font=("CalibriBlack",20),bd=8,command=Submit).place(x=940,y=490)
+Button(root,text="Clear",font=("CalibriBlack",13),bd=5,command=Clear).place(x=915,y=570)
+Button(root,text="Show Record",font=("CalibriBlack",12),bd=5,command=Show_Record).place(x=980,y=570)
 
 def on_closing():
     if askokcancel("Quit", "Do you want to quit?"):
