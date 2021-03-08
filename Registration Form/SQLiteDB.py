@@ -1,7 +1,6 @@
 import sqlite3
-from sqlite3.dbapi2 import Cursor
 
-connection = sqlite3.connect('student_database.sql')
+connection = sqlite3.connect('student_database.sqlite')
 c = connection.cursor()
 
 def SendDB(Fname,Phone1,Gender,Age,Pin,Current_address,Permanent_address,City,State,Area_Of_Intrest,Suggession):
